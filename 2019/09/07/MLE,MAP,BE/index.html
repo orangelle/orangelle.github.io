@@ -406,9 +406,7 @@ height:50vh;
         <blockquote>
 <p>The basic problem we study in probability:<br>Given a data generating process, what are the properties of the outcomes?<br>The basic problem of statistical inference is the inverse of probability:<br>Given the outcomes, what can we say about the process that generated the data?</p>
 </blockquote>
-<p>The definition above concisely tells the difference between probability and statistics. </p>
-<a id="more"></a>
-
+<p>The definition above concisely tells the difference between probability and statistics.<br><a id="more"></a></p>
 <p>In machine learning, we are given the samples and their labels, and want to estimate a model and its parameters which are the most likely to describe the relation between them. Apparently, machine learning problem is a statistic problem. For parameter estimation, there are three common methods usually confusing the machine learning learners: </p>
 <ul>
 <li>Maximum Likelihood Estimation(MLE) </li>
@@ -418,8 +416,7 @@ height:50vh;
 <p>In this article I’m going to give a gentle explanation on these three concepts and show how they differ from each others. </p>
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>First, let’s see some background knowledge.</p>
 <h3 id="Bayes’-Theorem"><a href="#Bayes’-Theorem" class="headerlink" title="Bayes’ Theorem"></a>Bayes’ Theorem</h3><p>In probability theory and statistics, Bayes’ theorem describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is like this:</p>
-<p>$$ P(A|B) = \frac{P(B|A)*P(A)}{P(B)} $$</p>
-<ul>
+<script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)*P(A)}{P(B)}</script><ul>
 <li>$P(A|B)$ is a conditional probability, and also called <strong>posterior probability</strong>. It means the probability of event A occuring given that B is true.</li>
 <li>$P(B|A)$ is also a <strong>conditional probability</strong>: the probability of event B occuring given that A is true.</li>
 <li>$P(A)$ and $P(B)$ are the probability of observing A and B independently of each other. Thay are also called marginal probability or <strong>prior probability</strong>.</li>
@@ -431,15 +428,17 @@ height:50vh;
 </ul>
 <h3 id="Conjugate-Prior-Distributions"><a href="#Conjugate-Prior-Distributions" class="headerlink" title="Conjugate Prior Distributions"></a>Conjugate Prior Distributions</h3><p>In Bayesian probability theory, if the posterior distributions p are in the same family as the prior probability distribution p, the prior and posterior are then called conjugate distributions, and the prior is called a conjugate prior for the likelihood function.</p>
 <p>Here are some common conjugate prior distributions:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>Distribution</th>
 <th>Parameter</th>
-<th>Conjugate prior</th>
+<th>Conjugate prior </th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Binomial</td>
 <td>Probability</td>
 <td>Beta</td>
@@ -469,29 +468,51 @@ height:50vh;
 <td>Variance</td>
 <td>Inverse-gamma</td>
 </tr>
-</tbody></table>
-<h3 id="Beta-Distribution"><a href="#Beta-Distribution" class="headerlink" title="Beta Distribution"></a>Beta Distribution</h3><p>In probability theory and statistics, the beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by �� and ��. Its probability density function is:</p>
-<p>$$<br>\begin{aligned}<br>f(x;\alpha, \beta)&amp;=\frac{x^{\alpha-1}(1-x)^{\beta -1}}{\int^{1}_{0}u^{\alpha-1}(1-u)^{\beta-1}du} \<br>&amp;= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1} \<br>&amp;= \frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}<br>\end{aligned}<br>$$</p>
-<p>A random variable $X$ beta-distributied with $\alpha$ and $\beta$ is denoted by: $X \sim Beta(\alpha,\beta)$</p>
-<h2 id="A-Typical-Example"><a href="#A-Typical-Example" class="headerlink" title="A Typical Example"></a>A Typical Example</h2><p>Here is a common and basic example for studying such statistic problems. Let’s assume we have a coin, and we what to estimate the probability $\theta$ for the front side showing in a coin tossing game. We have done 10 experiments, in which front side showed 6 times and back side showed 4 times. We record the results as:<br>$$X = x_{1}, x_{2},…, x_{10} = 1, 0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,1$$</p>
-<h2 id="Maximum-Likelihood-Estimation"><a href="#Maximum-Likelihood-Estimation" class="headerlink" title="Maximum Likelihood Estimation"></a>Maximum Likelihood Estimation</h2><p>MLE is a method trying to find the parameters which maximize the probability of the observed data occuring. For an independently and identically distributed sample set, its likelihood function is:<br>$$L(X|\theta)= \prod_{n}^{i=0} P(x_{i}|\theta)$$<br>More specifically, for our coin tossing example, it is:<br>$$L(X|\theta)= \theta^6(1-\theta)^4 $$<br>By solving $\frac{\partial L(X|\theta)}{\partial \theta} =0$, we can get the $\hat\theta$ we want.</p>
-<p>To make it easier to solve, we can convert the likelihood function to log-likelihood function:<br>$$l(X|\theta)=logL(X|\theta)=6log(\theta)+4\log(1-\theta)$$<br>Then by solving $\frac{\partial l(X|\theta)}{\partial \theta} =0$ we can get $\hat\theta=0.6$. The reason for using log is that log doesn’t change the convex property of the funtion.</p>
+</tbody>
+</table>
+</div>
+<h3 id="Beta-Distribution"><a href="#Beta-Distribution" class="headerlink" title="Beta Distribution"></a>Beta Distribution</h3><p>In probability theory and statistics, the beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by $\alpha$ and $\beta$. Its probability density function is:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(x;\alpha, \beta)&=\frac{x^{\alpha-1}(1-x)^{\beta -1}}{\int^{1}_{0}u^{\alpha-1}(1-u)^{\beta-1}du} \\
+&= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1} \\
+&= \frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+\end{aligned}</script><p>A random variable $X$ beta-distributied with $\alpha$ and $\beta$ is denoted by: $X \sim Beta(\alpha,\beta)$</p>
+<h2 id="A-Typical-Example"><a href="#A-Typical-Example" class="headerlink" title="A Typical Example"></a>A Typical Example</h2><p>Here is a common and basic example for studying such statistic problems. Let’s assume we have a coin, and we what to estimate the probability $\theta$ for the front side showing in a coin tossing game. We have done 10 experiments, in which front side showed 6 times and back side showed 4 times. We record the results as: </p>
+<script type="math/tex; mode=display">X = x_{1}, x_{2},..., x_{10} = 1, 0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,1</script><h2 id="Maximum-Likelihood-Estimation"><a href="#Maximum-Likelihood-Estimation" class="headerlink" title="Maximum Likelihood Estimation"></a>Maximum Likelihood Estimation</h2><p>MLE is a method trying to find the parameters which maximize the probability of the observed data occuring. For an independently and identically distributed sample set, its likelihood function is:</p>
+<script type="math/tex; mode=display">L(X|\theta)= \prod_{n}^{i=0} P(x_{i}|\theta)</script><p>More specifically, for our coin tossing example, it is:</p>
+<script type="math/tex; mode=display">L(X|\theta)= \theta^6(1-\theta)^4</script><p>By solving $\frac{\partial L(X|\theta)}{\partial \theta} =0$, we can get the $\hat\theta$ we want.</p>
+<p>To make it easier to solve, we can convert the likelihood function to log-likelihood function: </p>
+<script type="math/tex; mode=display">l(X|\theta)=logL(X|\theta)=6log(\theta)+4\log(1-\theta)</script><p>Then by solving $\frac{\partial l(X|\theta)}{\partial \theta} =0$ we can get $\hat\theta=0.6$. The reason for using log is that log doesn’t change the convex property of the funtion.</p>
 <p>However, you may not believe the result because we all know that the probability should be 0.5! But wait, we have no evidence to show that the coin is a totally normal one. Maybe it is not with uniform density? The only TRUTH we have is the experiment result. But now the result is in conflict with our common BELIEF. So, that’s why we need MAP.</p>
-<h2 id="Maximum-A-Posteriori-Estimation"><a href="#Maximum-A-Posteriori-Estimation" class="headerlink" title="Maximum A Posteriori Estimation"></a>Maximum A Posteriori Estimation</h2><p>Instead of $P(X|\theta)$, the cost function MAP wants to maximize is:  $$P(X|\theta)P(\theta)$$.<br>In MAP, $\theta$ is supposed to be a random variable and obey some distribution. This distribution is a prior distribution, which comes from some assumption or our experience. By maximizing $P(X|\theta)P(\theta)$, we do not only consider the likelihood function $P(X|\theta)$, but also want to increase the probability of the apparence of $\theta$ itself. It is somehow similar to the concept of regularization in machine learning. What is different is that in regularization the regular term is added, but here it is multiplied. </p>
+<h2 id="Maximum-A-Posteriori-Estimation"><a href="#Maximum-A-Posteriori-Estimation" class="headerlink" title="Maximum A Posteriori Estimation"></a>Maximum A Posteriori Estimation</h2><p>Instead of $P(X|\theta)$, the cost function MAP wants to maximize is:  <script type="math/tex">P(X|\theta)P(\theta)</script>.<br>In MAP, $\theta$ is supposed to be a random variable and obey some distribution. This distribution is a prior distribution, which comes from some assumption or our experience. By maximizing $P(X|\theta)P(\theta)$, we do not only consider the likelihood function $P(X|\theta)$, but also want to increase the probability of the apparence of $\theta$ itself. It is somehow similar to the concept of regularization in machine learning. What is different is that in regularization the regular term is added, but here it is multiplied. </p>
 <p>If we transform the cost function $P(X|\theta)P(\theta)$ into  $\frac{P(X|\theta)P(\theta)}{P(X)}$, where $P(X)$ is a constant value (got from samples), we can find based on Bayes’ therom $\frac{P(X|\theta)P(\theta)}{P(X)}$ is actually $P(\theta|X)$, which is the posterior probability of $\theta$. This is why we call the method Maximum A Posteriori Estimation.</p>
-<p>$$<br>\begin{aligned}<br>P(\theta|X)&amp;= \frac{P(X|\theta)P(\theta)}{P(X)} \propto P(X|\theta)P(\theta)\<br>arg,\max_{\theta}P(\theta|X)&amp;=arg,\max_{\theta}P(X|\theta)P(\theta)<br>\end{aligned}<br>$$</p>
-<p>In our example of tossing coin, we know the probability of $\theta=0.5$ is very high, thus lets assume that $P(\theta)$ is a Gaussian function with mean as 0.5 and variance as 0.1:</p>
-<p>$$<br>P(\theta)= \frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}<br>$$</p>
-<p>As $P(X|\theta)=\theta^6(1-\theta)^4$, we can get:</p>
-<p>$$<br>\begin{aligned}<br>P&amp;(X|\theta)P(\theta)=\theta^6(1-\theta)^4\frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}\<br>log(P(X|\theta)P(\theta))&amp;=6log\theta +4log(1-\theta)+log(\frac{1}{10\sqrt{2\pi}})-50(\theta-0.5)^2<br>\end{aligned}<br>$$</p>
-<p>Solving $\frac{\partial log(P(X|\theta)P(\theta))}{\partial\theta}=0$, we can get $\hat\theta \approx 0.529$.</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P(\theta|X)&= \frac{P(X|\theta)P(\theta)}{P(X)} \propto P(X|\theta)P(\theta)\\
+arg\,\max_{\theta}P(\theta|X)&=arg\,\max_{\theta}P(X|\theta)P(\theta)
+\end{aligned}</script><p>In our example of tossing coin, we know the probability of $\theta=0.5$ is very high, thus lets assume that $P(\theta)$ is a Gaussian function with mean as 0.5 and variance as 0.1:</p>
+<script type="math/tex; mode=display">
+P(\theta)= \frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}</script><p>As $P(X|\theta)=\theta^6(1-\theta)^4$, we can get:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+P&(X|\theta)P(\theta)=\theta^6(1-\theta)^4\frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}\\
+log(P(X|\theta)P(\theta))&=6log\theta +4log(1-\theta)+log(\frac{1}{10\sqrt{2\pi}})-50(\theta-0.5)^2
+\end{aligned}</script><p>Solving $\frac{\partial log(P(X|\theta)P(\theta))}{\partial\theta}=0$, we can get $\hat\theta \approx 0.529$.</p>
 <p>Now the result seems better, but we need to notice that if we assume $P(\theta)\sim N(0.6,0.1)$, $\hat\theta$ will be 0.6, and if we assume $P(\theta)\sim Beta(3,3)$, $\hat\theta$ will approximately be 0.57. This shows, in MAP a resonable prior distribution is the key factor for a good estimation. </p>
 <p>Since after introducing the prior distribution uncertainty increases a lot for the choice of $\theta$, is there any way to estimite the possible distribution of $\theta$ instead of exact value? Yes, that is what Bayesian estimation does.</p>
-<h2 id="Bayesian-Estimation"><a href="#Bayesian-Estimation" class="headerlink" title="Bayesian Estimation"></a>Bayesian Estimation</h2><p>Bayasian estimation is a further extension of MAP, where the distribution of parameter $\theta$ is estimated. In BE, $P(X)$ can not be ignored as in MAP. As $X$ is known, the distribution of $\theta$ is $P(\theta|X)$. By Bayes’ formula:<br>$$<br>P(\theta|X)= \frac{P(X|\theta)P(\theta)}{P(X)}<br>$$<br>With continuous random variables $\theta$, $P(X)= \int_{\Theta}P(X|\theta)P(\theta)d\theta$. And Bayes’ formula becomes:<br>$$<br>P(\theta|X)=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta}<br>$$<br>The calculation of BE really depends on a suitable choice of $P(\theta)$. For our coin tossing example, we can choose conjugate prior distribution. The conjugate prior distribution for the bionomial distrobution is Beta distribution, so we can assume $P(\theta) \sim Beta(\alpha, \beta)$. The probability density formula for Beta distribution is:<br>$$f(x;\alpha,\beta)=\frac {1} {B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}$$<br>So, the Bayes’ formula becomes:</p>
-<p>$$<br>\begin{aligned} P(\theta|X)&amp;=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta} \ &amp;=\frac {\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)} } {\int_{\Theta}\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)}d\theta} \&amp;=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {\int_{\Theta}\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}d\theta} \ &amp;=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {B(\alpha+6-1,\beta+4-1)} \&amp;=Beta(\theta|\alpha+6,\beta+4)\end{aligned}<br>$$</p>
-<p>$Beta(\theta|\alpha+6,\beta+4)$ is the result distribution of BE.</p>
-<p>If the result distribution has a infinite mean, we can use the expectation as an estimate for $theta$. For example, if $\alpha=3, \beta=3$, by the expectation formula for Beta distribution $E(\theta)=\frac {\alpha} {\alpha+\beta}$, we can get:<br>$$<br>\hat{\theta}=\int_{\Theta} \theta P(\theta|X)d\theta=E(\theta)=\frac {\alpha} {\alpha+\beta}=\frac {9} {9+7}=0.5625<br>$$</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From MLE, MAP to BE, the infomation used is increasing. MLE and MAP both try to find a certain value of $\theta$ to maximize their cost funtion, while BE try to get a distribution of $\theta$. In MLE, we don’t consider the prior distribution of $\theta$, while in MAP and BE we do. In MAP, we  have to assume a certain distribution for $\theta$, but in BE we make use of conjugate prior distribution.</p>
+<h2 id="Bayesian-Estimation"><a href="#Bayesian-Estimation" class="headerlink" title="Bayesian Estimation"></a>Bayesian Estimation</h2><p>Bayasian estimation is a further extension of MAP, where the distribution of parameter $\theta$ is estimated. In BE, $P(X)$ can not be ignored as in MAP. As $X$ is known, the distribution of $\theta$ is $P(\theta|X)$. By Bayes’ formula:</p>
+<script type="math/tex; mode=display">
+P(\theta|X)= \frac{P(X|\theta)P(\theta)}{P(X)}</script><p>With continuous random variables $\theta$, $P(X)= \int_{\Theta}P(X|\theta)P(\theta)d\theta$. And Bayes’ formula becomes:</p>
+<script type="math/tex; mode=display">
+P(\theta|X)=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta}</script><p>The calculation of BE really depends on a suitable choice of $P(\theta)$. For our coin tossing example, we can choose conjugate prior distribution. The conjugate prior distribution for the bionomial distrobution is Beta distribution, so we can assume $P(\theta) \sim Beta(\alpha, \beta)$. The probability density formula for Beta distribution is:</p>
+<script type="math/tex; mode=display">f(x;\alpha,\beta)=\frac {1} {B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}</script><p>So, the Bayes’ formula becomes:</p>
+<script type="math/tex; mode=display">
+\begin{aligned} P(\theta|X)&=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta} \\ &=\frac {\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)} } {\int_{\Theta}\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)}d\theta} \\&=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {\int_{\Theta}\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}d\theta} \\ &=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {B(\alpha+6-1,\beta+4-1)} \\&=Beta(\theta|\alpha+6,\beta+4)\end{aligned}</script><p>$Beta(\theta|\alpha+6,\beta+4)$ is the result distribution of BE.</p>
+<p>If the result distribution has a infinite mean, we can use the expectation as an estimate for $theta$. For example, if $\alpha=3, \beta=3$, by the expectation formula for Beta distribution $E(\theta)=\frac {\alpha} {\alpha+\beta}$, we can get:</p>
+<script type="math/tex; mode=display">
+\hat{\theta}=\int_{\Theta} \theta P(\theta|X)d\theta=E(\theta)=\frac {\alpha} {\alpha+\beta}=\frac {9} {9+7}=0.5625</script><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From MLE, MAP to BE, the infomation used is increasing. MLE and MAP both try to find a certain value of $\theta$ to maximize their cost funtion, while BE try to get a distribution of $\theta$. In MLE, we don’t consider the prior distribution of $\theta$, while in MAP and BE we do. In MAP, we  have to assume a certain distribution for $\theta$, but in BE we make use of conjugate prior distribution.</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -501,7 +522,8 @@ height:50vh;
 <th>BE</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$\hat{\theta}$</td>
 <td>certain value</td>
 <td>certain value</td>
@@ -509,9 +531,12 @@ height:50vh;
 </tr>
 <tr>
 <td>$f$</td>
-<td>$P(X|\theta)$</td>
-<td>$P(X|\theta)P(\theta)$</td>
-<td>$\frac {P(X|\theta)P(\theta)}{P(X)}$</td>
+<td>$P(X\</td>
+<td>\theta)$</td>
+<td>$P(X\</td>
+<td>\theta)P(\theta)$</td>
+<td>$\frac {P(X\</td>
+<td>\theta)P(\theta)}{P(X)}$</td>
 </tr>
 <tr>
 <td>$P(\theta)$</td>
@@ -519,7 +544,9 @@ height:50vh;
 <td>any reasonable<br>prior distribution</td>
 <td>conjugate<br> prior distribution</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>MLE is simple and works well on a lot of random samples, but heavily biases to small set of samples. Solutions for MAP and especially for BE are more complicated, but they are less biased if they have a good prior assumption. </p>
 
     </article>
@@ -529,7 +556,7 @@ height:50vh;
             <p>Author：<a href="https://orangelle.github.io">Orangele</a>
             <p>原文链接：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">https://orangelle.github.io/2019/09/07/MLE,MAP,BE/</a>
             <p>发表日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:14:18 am</a>
-            <p>更新日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:34:33 am</a>
+            <p>更新日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:54:49 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
