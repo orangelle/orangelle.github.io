@@ -274,7 +274,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.9k</span>Reading time: <span class="post-count reading-time">11 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.8k</span>Reading time: <span class="post-count reading-time">11 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -418,17 +418,16 @@ height:50vh;
 <p>In this article I’m going to give a gentle explanation on these three concepts and show how they differ from each others. </p>
 <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>First, let’s see some background knowledge.</p>
 <h3 id="Bayes’-Theorem"><a href="#Bayes’-Theorem" class="headerlink" title="Bayes’ Theorem"></a>Bayes’ Theorem</h3><p>In probability theory and statistics, Bayes’ theorem describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ P(A|B) = \frac&#123;P(B|A)*P(A)&#125;&#123;P(B)&#125; $$</span><br></pre></td></tr></table></figure>
-
+<p>$$ P(A|B) = \frac{P(B|A)*P(A)}{P(B)} $$</p>
 <ul>
-<li><code>$P(A|B)$</code> is a conditional probability, and also called <strong>posterior probability</strong>. It means the probability of event A occuring given that B is true.</li>
-<li><code>$P(B|A)$</code> is also a <strong>conditional probability</strong>: the probability of event B occuring given that A is true.</li>
-<li><code>$P(A)$</code> and <code>$P(B)$</code> are the probability of observing A and B independently of each other. Thay are also called marginal probability or <strong>prior probability</strong>.</li>
+<li>$P(A|B)$ is a conditional probability, and also called <strong>posterior probability</strong>. It means the probability of event A occuring given that B is true.</li>
+<li>$P(B|A)$ is also a <strong>conditional probability</strong>: the probability of event B occuring given that A is true.</li>
+<li>$P(A)$ and $P(B)$ are the probability of observing A and B independently of each other. Thay are also called marginal probability or <strong>prior probability</strong>.</li>
 </ul>
-<h3 id="Probability-Function-amp-Likelihood-Function"><a href="#Probability-Function-amp-Likelihood-Function" class="headerlink" title="Probability Function &amp; Likelihood Function"></a>Probability Function &amp; Likelihood Function</h3><p>For the function <code>$P(x|\theta)$</code>, we can view it in two aspects:</p>
+<h3 id="Probability-Function-amp-Likelihood-Function"><a href="#Probability-Function-amp-Likelihood-Function" class="headerlink" title="Probability Function &amp; Likelihood Function"></a>Probability Function &amp; Likelihood Function</h3><p>For the function $P(x|\theta)$, we can view it in two aspects:</p>
 <ul>
-<li>If <code>$\theta$</code> is known and invariable and <code>$x$</code> is variable, <code>$P(x|\theta)$</code> is a probability function which represents the probability of observing different <code>$x$</code> under a fixed <code>$\theta$</code>.</li>
-<li>If <code>$x$</code> is known invariable and <code>$\theta$</code> is variable, then <code>$P(x|\theta)$</code> is called a likelihood function which represents the probability of observing a specific <code>$x$</code> under different <code>$\theta$</code>. It can also be written as <code>$L(\theta|x)$</code>.</li>
+<li>If $\theta$ is known and invariable and $x$ is variable, $P(x|\theta)$ is a probability function which represents the probability of observing different $x$ under a fixed $\theta$.</li>
+<li>If $x$ is known invariable and $\theta$ is variable, then $P(x|\theta)$ is called a likelihood function which represents the probability of observing a specific $x$ under different $\theta$. It can also be written as $L(\theta|x)$.</li>
 </ul>
 <h3 id="Conjugate-Prior-Distributions"><a href="#Conjugate-Prior-Distributions" class="headerlink" title="Conjugate Prior Distributions"></a>Conjugate Prior Distributions</h3><p>In Bayesian probability theory, if the posterior distributions p are in the same family as the prior probability distribution p, the prior and posterior are then called conjugate distributions, and the prior is called a conjugate prior for the likelihood function.</p>
 <p>Here are some common conjugate prior distributions:</p>
@@ -472,38 +471,27 @@ height:50vh;
 </tr>
 </tbody></table>
 <h3 id="Beta-Distribution"><a href="#Beta-Distribution" class="headerlink" title="Beta Distribution"></a>Beta Distribution</h3><p>In probability theory and statistics, the beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by �� and ��. Its probability density function is:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">f(x;\alpha, \beta)&amp;=\frac&#123;x^&#123;\alpha-1&#125;(1-x)^&#123;\beta -1&#125;&#125;&#123;\int^&#123;1&#125;_&#123;0&#125;u^&#123;\alpha-1&#125;(1-u)^&#123;\beta-1&#125;du&#125; \\</span><br><span class="line">&amp;= \frac&#123;\Gamma(\alpha+\beta)&#125;&#123;\Gamma(\alpha)\Gamma(\beta)&#125;x^&#123;\alpha-1&#125;(1-x)^&#123;\beta-1&#125; \\</span><br><span class="line">&amp;= \frac&#123;1&#125;&#123;B(\alpha,\beta)&#125;x^&#123;\alpha-1&#125;(1-x)^&#123;\beta-1&#125;</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<p>A random variable <code>$X$</code> beta-distributied with <code>$\alpha$</code> and <code>$\beta$</code> is denoted by: <code>$X \sim Beta(\alpha,\beta)$</code></p>
-<h2 id="A-Typical-Example"><a href="#A-Typical-Example" class="headerlink" title="A Typical Example"></a>A Typical Example</h2><p>Here is a common and basic example for studying such statistic problems. Let’s assume we have a coin, and we what to estimate the probability <code>$\theta$</code> for the front side showing in a coin tossing game. We have done 10 experiments, in which front side showed 6 times and back side showed 4 times. We record the results as:<br><code>$$X = x_{1}, x_{2},..., x_{10} = 1, 0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,1$$</code></p>
-<h2 id="Maximum-Likelihood-Estimation"><a href="#Maximum-Likelihood-Estimation" class="headerlink" title="Maximum Likelihood Estimation"></a>Maximum Likelihood Estimation</h2><p>MLE is a method trying to find the parameters which maximize the probability of the observed data occuring. For an independently and identically distributed sample set, its likelihood function is:<br><code>$$L(X|\theta)= \prod_{n}^{i=0} P(x_{i}|\theta)$$</code><br>More specifically, for our coin tossing example, it is:<br><code>$$L(X|\theta)= \theta^6(1-\theta)^4 $$</code><br>By solving <code>$\frac{\partial L(X|\theta)}{\partial \theta} =0$</code>, we can get the <code>$\hat\theta$</code> we want.</p>
-<p>To make it easier to solve, we can convert the likelihood function to log-likelihood function:<br><code>$$l(X|\theta)=logL(X|\theta)=6log(\theta)+4\log(1-\theta)$$</code><br>Then by solving <code>$\frac{\partial l(X|\theta)}{\partial \theta} =0$</code> we can get <code>$\hat\theta=0.6$</code>. The reason for using log is that log doesn’t change the convex property of the funtion.</p>
+<p>$$<br>\begin{aligned}<br>f(x;\alpha, \beta)&amp;=\frac{x^{\alpha-1}(1-x)^{\beta -1}}{\int^{1}_{0}u^{\alpha-1}(1-u)^{\beta-1}du} \<br>&amp;= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1} \<br>&amp;= \frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}<br>\end{aligned}<br>$$</p>
+<p>A random variable $X$ beta-distributied with $\alpha$ and $\beta$ is denoted by: $X \sim Beta(\alpha,\beta)$</p>
+<h2 id="A-Typical-Example"><a href="#A-Typical-Example" class="headerlink" title="A Typical Example"></a>A Typical Example</h2><p>Here is a common and basic example for studying such statistic problems. Let’s assume we have a coin, and we what to estimate the probability $\theta$ for the front side showing in a coin tossing game. We have done 10 experiments, in which front side showed 6 times and back side showed 4 times. We record the results as:<br>$$X = x_{1}, x_{2},…, x_{10} = 1, 0 ,1 ,1 ,0 ,0 ,0 ,1 ,1 ,1$$</p>
+<h2 id="Maximum-Likelihood-Estimation"><a href="#Maximum-Likelihood-Estimation" class="headerlink" title="Maximum Likelihood Estimation"></a>Maximum Likelihood Estimation</h2><p>MLE is a method trying to find the parameters which maximize the probability of the observed data occuring. For an independently and identically distributed sample set, its likelihood function is:<br>$$L(X|\theta)= \prod_{n}^{i=0} P(x_{i}|\theta)$$<br>More specifically, for our coin tossing example, it is:<br>$$L(X|\theta)= \theta^6(1-\theta)^4 $$<br>By solving $\frac{\partial L(X|\theta)}{\partial \theta} =0$, we can get the $\hat\theta$ we want.</p>
+<p>To make it easier to solve, we can convert the likelihood function to log-likelihood function:<br>$$l(X|\theta)=logL(X|\theta)=6log(\theta)+4\log(1-\theta)$$<br>Then by solving $\frac{\partial l(X|\theta)}{\partial \theta} =0$ we can get $\hat\theta=0.6$. The reason for using log is that log doesn’t change the convex property of the funtion.</p>
 <p>However, you may not believe the result because we all know that the probability should be 0.5! But wait, we have no evidence to show that the coin is a totally normal one. Maybe it is not with uniform density? The only TRUTH we have is the experiment result. But now the result is in conflict with our common BELIEF. So, that’s why we need MAP.</p>
-<h2 id="Maximum-A-Posteriori-Estimation"><a href="#Maximum-A-Posteriori-Estimation" class="headerlink" title="Maximum A Posteriori Estimation"></a>Maximum A Posteriori Estimation</h2><p>Instead of <code>$P(X|\theta)$</code>, the cost function MAP wants to maximize is:  <code>$$P(X|\theta)P(\theta)$$</code>.<br>In MAP, <code>$\theta$</code> is supposed to be a random variable and obey some distribution. This distribution is a prior distribution, which comes from some assumption or our experience. By maximizing <code>$P(X|\theta)P(\theta)$</code>, we do not only consider the likelihood function <code>$P(X|\theta)$</code>, but also want to increase the probability of the apparence of <code>$\theta$</code> itself. It is somehow similar to the concept of regularization in machine learning. What is different is that in regularization the regular term is added, but here it is multiplied. </p>
-<p>If we transform the cost function <code>$P(X|\theta)P(\theta)$</code> into  <code>$\frac{P(X|\theta)P(\theta)}{P(X)}$</code>, where <code>$P(X)$</code> is a constant value (got from samples), we can find based on Bayes’ therom <code>$\frac{P(X|\theta)P(\theta)}{P(X)}$</code> is actually <code>$P(\theta|X)$</code>, which is the posterior probability of <code>$\theta$</code>. This is why we call the method Maximum A Posteriori Estimation.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">P(\theta|X)&amp;= \frac&#123;P(X|\theta)P(\theta)&#125;&#123;P(X)&#125; \propto P(X|\theta)P(\theta)\\</span><br><span class="line">arg\,\max_&#123;\theta&#125;P(\theta|X)&amp;=arg\,\max_&#123;\theta&#125;P(X|\theta)P(\theta)</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<p>In our example of tossing coin, we know the probability of <code>$\theta=0.5$</code> is very high, thus lets assume that <code>$P(\theta)$</code> is a Gaussian function with mean as 0.5 and variance as 0.1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">P(\theta)= \frac&#123;1&#125;&#123;10\sqrt&#123;2\pi&#125;&#125;e^&#123;-50(\theta-0.5)^2&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<p>As <code>$P(X|\theta)=\theta^6(1-\theta)^4$</code>, we can get:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">P&amp;(X|\theta)P(\theta)=\theta^6(1-\theta)^4\frac&#123;1&#125;&#123;10\sqrt&#123;2\pi&#125;&#125;e^&#123;-50(\theta-0.5)^2&#125;\\</span><br><span class="line">log(P(X|\theta)P(\theta))&amp;=6log\theta +4log(1-\theta)+log(\frac&#123;1&#125;&#123;10\sqrt&#123;2\pi&#125;&#125;)-50(\theta-0.5)^2</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<p>Solving <code>$\frac{\partial log(P(X|\theta)P(\theta))}{\partial\theta}=0$</code>, we can get <code>$\hat\theta \approx 0.529$</code>.</p>
-<p>Now the result seems better, but we need to notice that if we assume <code>$P(\theta)\sim N(0.6,0.1)$</code>, <code>$\hat\theta$</code> will be 0.6, and if we assume <code>$P(\theta)\sim Beta(3,3)$</code>, <code>$\hat\theta$</code> will approximately be 0.57. This shows, in MAP a resonable prior distribution is the key factor for a good estimation. </p>
-<p>Since after introducing the prior distribution uncertainty increases a lot for the choice of <code>$\theta$</code>, is there any way to estimite the possible distribution of <code>$\theta$</code> instead of exact value? Yes, that is what Bayesian estimation does.</p>
-<h2 id="Bayesian-Estimation"><a href="#Bayesian-Estimation" class="headerlink" title="Bayesian Estimation"></a>Bayesian Estimation</h2><p>Bayasian estimation is a further extension of MAP, where the distribution of parameter <code>$\theta$</code> is estimated. In BE, <code>$P(X)$</code> can not be ignored as in MAP. As <code>$X$</code> is known, the distribution of <code>$\theta$</code> is <code>$P(\theta|X)$</code>. By Bayes’ formula:<br><code>$$
-P(\theta|X)= \frac{P(X|\theta)P(\theta)}{P(X)}
-$$</code><br>With continuous random variables <code>$\theta$</code>, <code>$P(X)= \int_{\Theta}P(X|\theta)P(\theta)d\theta$</code>. And Bayes’ formula becomes:<br><code>$$
-P(\theta|X)=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta}
-$$</code><br>The calculation of BE really depends on a suitable choice of <code>$P(\theta)$</code>. For our coin tossing example, we can choose conjugate prior distribution. The conjugate prior distribution for the bionomial distrobution is Beta distribution, so we can assume <code>$P(\theta) \sim Beta(\alpha, \beta)$</code>. The probability density formula for Beta distribution is:<br><code>$$f(x;\alpha,\beta)=\frac {1} {B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}$$</code><br>So, the Bayes’ formula becomes:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;aligned&#125; P(\theta|X)&amp;=\frac &#123;P(X|\theta)P(\theta)&#125; &#123;\int_&#123;\Theta&#125;P(X|\theta)P(\theta)d\theta&#125; \\ &amp;=\frac &#123;\theta^6(1-\theta)^4 \frac &#123;\theta^&#123;\alpha-1&#125;(1-\theta)^&#123;\beta-1&#125;&#125; &#123;B(\alpha,\beta)&#125; &#125; &#123;\int_&#123;\Theta&#125;\theta^6(1-\theta)^4 \frac &#123;\theta^&#123;\alpha-1&#125;(1-\theta)^&#123;\beta-1&#125;&#125; &#123;B(\alpha,\beta)&#125;d\theta&#125; \\&amp;=\frac &#123;\theta^&#123;\alpha+6-1&#125;(1-\theta)^&#123;\beta+4-1&#125;&#125; &#123;\int_&#123;\Theta&#125;\theta^&#123;\alpha+6-1&#125;(1-\theta)^&#123;\beta+4-1&#125;d\theta&#125; \\ &amp;=\frac &#123;\theta^&#123;\alpha+6-1&#125;(1-\theta)^&#123;\beta+4-1&#125;&#125; &#123;B(\alpha+6-1,\beta+4-1)&#125; \\&amp;=Beta(\theta|\alpha+6,\beta+4)\end&#123;aligned&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
-
-<p><code>$Beta(\theta|\alpha+6,\beta+4)$</code> is the result distribution of BE.</p>
-<p>If the result distribution has a infinite mean, we can use the expectation as an estimate for <code>$theta$</code>. For example, if <code>$\alpha=3, \beta=3$</code>, by the expectation formula for Beta distribution <code>$E(\theta)=\frac {\alpha} {\alpha+\beta}$</code>, we can get:<br><code>$$
-\hat{\theta}=\int_{\Theta} \theta P(\theta|X)d\theta=E(\theta)=\frac {\alpha} {\alpha+\beta}=\frac {9} {9+7}=0.5625
-$$</code></p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From MLE, MAP to BE, the infomation used is increasing. MLE and MAP both try to find a certain value of <code>$\theta$</code> to maximize their cost funtion, while BE try to get a distribution of <code>$\theta$</code>. In MLE, we don’t consider the prior distribution of <code>$\theta$</code>, while in MAP and BE we do. In MAP, we  have to assume a certain distribution for <code>$\theta$</code>, but in BE we make use of conjugate prior distribution.</p>
+<h2 id="Maximum-A-Posteriori-Estimation"><a href="#Maximum-A-Posteriori-Estimation" class="headerlink" title="Maximum A Posteriori Estimation"></a>Maximum A Posteriori Estimation</h2><p>Instead of $P(X|\theta)$, the cost function MAP wants to maximize is:  $$P(X|\theta)P(\theta)$$.<br>In MAP, $\theta$ is supposed to be a random variable and obey some distribution. This distribution is a prior distribution, which comes from some assumption or our experience. By maximizing $P(X|\theta)P(\theta)$, we do not only consider the likelihood function $P(X|\theta)$, but also want to increase the probability of the apparence of $\theta$ itself. It is somehow similar to the concept of regularization in machine learning. What is different is that in regularization the regular term is added, but here it is multiplied. </p>
+<p>If we transform the cost function $P(X|\theta)P(\theta)$ into  $\frac{P(X|\theta)P(\theta)}{P(X)}$, where $P(X)$ is a constant value (got from samples), we can find based on Bayes’ therom $\frac{P(X|\theta)P(\theta)}{P(X)}$ is actually $P(\theta|X)$, which is the posterior probability of $\theta$. This is why we call the method Maximum A Posteriori Estimation.</p>
+<p>$$<br>\begin{aligned}<br>P(\theta|X)&amp;= \frac{P(X|\theta)P(\theta)}{P(X)} \propto P(X|\theta)P(\theta)\<br>arg,\max_{\theta}P(\theta|X)&amp;=arg,\max_{\theta}P(X|\theta)P(\theta)<br>\end{aligned}<br>$$</p>
+<p>In our example of tossing coin, we know the probability of $\theta=0.5$ is very high, thus lets assume that $P(\theta)$ is a Gaussian function with mean as 0.5 and variance as 0.1:</p>
+<p>$$<br>P(\theta)= \frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}<br>$$</p>
+<p>As $P(X|\theta)=\theta^6(1-\theta)^4$, we can get:</p>
+<p>$$<br>\begin{aligned}<br>P&amp;(X|\theta)P(\theta)=\theta^6(1-\theta)^4\frac{1}{10\sqrt{2\pi}}e^{-50(\theta-0.5)^2}\<br>log(P(X|\theta)P(\theta))&amp;=6log\theta +4log(1-\theta)+log(\frac{1}{10\sqrt{2\pi}})-50(\theta-0.5)^2<br>\end{aligned}<br>$$</p>
+<p>Solving $\frac{\partial log(P(X|\theta)P(\theta))}{\partial\theta}=0$, we can get $\hat\theta \approx 0.529$.</p>
+<p>Now the result seems better, but we need to notice that if we assume $P(\theta)\sim N(0.6,0.1)$, $\hat\theta$ will be 0.6, and if we assume $P(\theta)\sim Beta(3,3)$, $\hat\theta$ will approximately be 0.57. This shows, in MAP a resonable prior distribution is the key factor for a good estimation. </p>
+<p>Since after introducing the prior distribution uncertainty increases a lot for the choice of $\theta$, is there any way to estimite the possible distribution of $\theta$ instead of exact value? Yes, that is what Bayesian estimation does.</p>
+<h2 id="Bayesian-Estimation"><a href="#Bayesian-Estimation" class="headerlink" title="Bayesian Estimation"></a>Bayesian Estimation</h2><p>Bayasian estimation is a further extension of MAP, where the distribution of parameter $\theta$ is estimated. In BE, $P(X)$ can not be ignored as in MAP. As $X$ is known, the distribution of $\theta$ is $P(\theta|X)$. By Bayes’ formula:<br>$$<br>P(\theta|X)= \frac{P(X|\theta)P(\theta)}{P(X)}<br>$$<br>With continuous random variables $\theta$, $P(X)= \int_{\Theta}P(X|\theta)P(\theta)d\theta$. And Bayes’ formula becomes:<br>$$<br>P(\theta|X)=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta}<br>$$<br>The calculation of BE really depends on a suitable choice of $P(\theta)$. For our coin tossing example, we can choose conjugate prior distribution. The conjugate prior distribution for the bionomial distrobution is Beta distribution, so we can assume $P(\theta) \sim Beta(\alpha, \beta)$. The probability density formula for Beta distribution is:<br>$$f(x;\alpha,\beta)=\frac {1} {B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}$$<br>So, the Bayes’ formula becomes:</p>
+<p>$$<br>\begin{aligned} P(\theta|X)&amp;=\frac {P(X|\theta)P(\theta)} {\int_{\Theta}P(X|\theta)P(\theta)d\theta} \ &amp;=\frac {\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)} } {\int_{\Theta}\theta^6(1-\theta)^4 \frac {\theta^{\alpha-1}(1-\theta)^{\beta-1}} {B(\alpha,\beta)}d\theta} \&amp;=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {\int_{\Theta}\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}d\theta} \ &amp;=\frac {\theta^{\alpha+6-1}(1-\theta)^{\beta+4-1}} {B(\alpha+6-1,\beta+4-1)} \&amp;=Beta(\theta|\alpha+6,\beta+4)\end{aligned}<br>$$</p>
+<p>$Beta(\theta|\alpha+6,\beta+4)$ is the result distribution of BE.</p>
+<p>If the result distribution has a infinite mean, we can use the expectation as an estimate for $theta$. For example, if $\alpha=3, \beta=3$, by the expectation formula for Beta distribution $E(\theta)=\frac {\alpha} {\alpha+\beta}$, we can get:<br>$$<br>\hat{\theta}=\int_{\Theta} \theta P(\theta|X)d\theta=E(\theta)=\frac {\alpha} {\alpha+\beta}=\frac {9} {9+7}=0.5625<br>$$</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>From MLE, MAP to BE, the infomation used is increasing. MLE and MAP both try to find a certain value of $\theta$ to maximize their cost funtion, while BE try to get a distribution of $\theta$. In MLE, we don’t consider the prior distribution of $\theta$, while in MAP and BE we do. In MAP, we  have to assume a certain distribution for $\theta$, but in BE we make use of conjugate prior distribution.</p>
 <table>
 <thead>
 <tr>
@@ -514,19 +502,19 @@ $$</code></p>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>$\hat{\theta}$</code></td>
+<td>$\hat{\theta}$</td>
 <td>certain value</td>
 <td>certain value</td>
 <td>distribution</td>
 </tr>
 <tr>
-<td><code>$f$</code></td>
-<td><code>$P(X|\theta)$</code></td>
-<td><code>$P(X|\theta)P(\theta)$</code></td>
-<td><code>$\frac {P(X|\theta)P(\theta)}{P(X)}$</code></td>
+<td>$f$</td>
+<td>$P(X|\theta)$</td>
+<td>$P(X|\theta)P(\theta)$</td>
+<td>$\frac {P(X|\theta)P(\theta)}{P(X)}$</td>
 </tr>
 <tr>
-<td><code>$P(\theta)$</code></td>
+<td>$P(\theta)$</td>
 <td>uniform distribution</td>
 <td>any reasonable<br>prior distribution</td>
 <td>conjugate<br> prior distribution</td>
@@ -541,7 +529,7 @@ $$</code></p>
             <p>Author：<a href="https://orangelle.github.io">Orangele</a>
             <p>原文链接：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">https://orangelle.github.io/2019/09/07/MLE,MAP,BE/</a>
             <p>发表日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:14:18 am</a>
-            <p>更新日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:19:23 am</a>
+            <p>更新日期：<a href="https://orangelle.github.io/2019/09/07/MLE,MAP,BE/">September 7th 2019, 2:34:33 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
