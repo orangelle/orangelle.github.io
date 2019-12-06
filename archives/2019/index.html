@@ -351,7 +351,7 @@
                 <span>Some Tips on Tensorflow 2.0</span>
         </a>
         <div class="abstract-content">
-            <p>�����ѧϰ tensorflow 2.0 (����tf2)�����Ը�дһЩ1.xʱ���Ĵ��롣�ڴ�1.xת��2.0�����в��ɱ����������һЩ�ӣ����д������Դ�ڽ�ͼ��ʽ�ĸı䣬��Щ�õ��˽����Щ����������2.x�汾Ŀǰ���Ƚ��£��ڴ˼�¼�����������⣬ϣ������Ϊ�Ժ��ʹ���ṩ�ο������Ķ�����ǰǿ�ҽ����Ķ� <a href="https://www.tensorflow.org/guide" target="_blank" rel="noopener">tf2 �ٷ�ָ��</a>��������<a href="https://www.tensorflow.org/guide/keras/overview" target="_blank" rel="noopener">Keras</a>���֡�<br>
+            <p>最近在学习 tensorflow 2.0 (以下tf2)并尝试改写一些1.x时代的代码。在从1.x转向2.0过程中不可避免地遇到了一些坑，其中大多数来源于建图方式的改变，有些得到了解决有些则还在摸索。2.x版本目前还比较新，在此记录下遇到的问题，希望可以为以后的使用提供参考。在阅读本文前强烈建议阅读 <a href="https://www.tensorflow.org/guide" target="_blank" rel="noopener">tf2 官方指南</a>，尤其是<a href="https://www.tensorflow.org/guide/keras/overview" target="_blank" rel="noopener">Keras</a>部分。<br>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -665,23 +665,7 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-</body>
+    </body>
 </html>
 
 
